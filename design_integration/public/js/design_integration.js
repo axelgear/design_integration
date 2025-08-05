@@ -419,130 +419,65 @@ frappe.listview_settings["Design Request"] = {
 
 // List View Settings for Design Request Item
 frappe.listview_settings['Design Request Item'] = {
-    add_fields: ["design_status", "approval_status", "assigned_to", "item_code", "item_name"],
-    get_indicator: function(doc) {
-        let status_colors = {
-            'Pending': 'orange',
-            'Approval Drawing': 'yellow',
-            'Send for Approval': 'blue',
-            'Design': 'purple',
-            'Modelling': 'indigo',
-            'Production Drawing': 'pink',
-            'SKU Generation': 'cyan',
-            'BOM': 'green',
-            'Nesting': 'dark',
-            'Completed': 'green',
-            'Cancelled': 'red'
-        };
-        
-        let approval_colors = {
-            'Pending': 'orange',
-            'Approved': 'green',
-            'Rejected': 'red',
-            'On Hold': 'yellow',
-            'Revised': 'blue'
-        };
-        
-        return [
-            doc.design_status,
-            status_colors[doc.design_status] || 'gray',
-            'design_status,=,' + doc.design_status
-        ];
+    onload: function(listview) {
+        // Add dropdown for design_status
+        listview.page.add_inner_button(__('Design Status'), function() {
+            // This will be handled by the dropdown itself
+        });
     },
     formatters: {
-        design_status: function(value, doc, cdt, cdn) {
-            let colors = {
+        design_status: function(value, df, doc) {
+            if (!value) return '';
+            
+            const colors = {
                 'Pending': 'orange',
-                'Approval Drawing': 'yellow',
-                'Send for Approval': 'blue',
-                'Design': 'purple',
-                'Modelling': 'indigo',
-                'Production Drawing': 'pink',
-                'SKU Generation': 'cyan',
-                'BOM': 'green',
-                'Nesting': 'dark',
+                'Approval Drawing': 'blue',
+                'Send for Approval': 'yellow',
+                'Design': 'green',
+                'Modelling': 'purple',
+                'Production Drawing': 'cyan',
+                'SKU Generation': 'pink',
+                'BOM': 'brown',
+                'Nesting': 'gray',
                 'Completed': 'green',
-                'Cancelled': 'red'
+                'Cancelled': 'red',
+                'On Hold': 'red'
             };
             
-            // Create dropdown for status
-            let options = 'Pending\nApproval Drawing\nSend for Approval\nDesign\nModelling\nProduction Drawing\nSKU Generation\nBOM\nNesting\nCompleted\nCancelled';
-            let select_html = `<select class="form-control" onchange="update_design_status('${doc.name}', this.value)" style="width: 120px; font-size: 12px;">`;
-            options.split('\n').forEach(option => {
-                let selected = option === value ? 'selected' : '';
-                select_html += `<option value="${option}" ${selected}>${option}</option>`;
-            });
-            select_html += '</select>';
-            
-            return select_html;
+            return `<span class="label label-${colors[value] || 'default'}">${value}</span>`;
         },
-        approval_status: function(value, doc, cdt, cdn) {
-            let colors = {
+        approval_status: function(value, df, doc) {
+            if (!value) return '';
+            
+            const colors = {
                 'Pending': 'orange',
                 'Approved': 'green',
                 'Rejected': 'red',
-                'On Hold': 'yellow',
-                'Revised': 'blue'
+                'On Hold': 'red'
             };
             
-            // Create dropdown for approval status
-            let options = 'Pending\nApproved\nRejected\nOn Hold\nRevised';
-            let select_html = `<select class="form-control" onchange="update_approval_status('${doc.name}', this.value)" style="width: 100px; font-size: 12px;">`;
-            options.split('\n').forEach(option => {
-                let selected = option === value ? 'selected' : '';
-                select_html += `<option value="${option}" ${selected}>${option}</option>`;
-            });
-            select_html += '</select>';
-            
-            return select_html;
+            return `<span class="label label-${colors[value] || 'default'}">${value}</span>`;
         }
-    },
-    onload: function(listview) {
-        // Add custom filters
-        listview.page.add_inner_button(__('Filter by Status'), function() {
-            frappe.prompt({
-                label: __('Design Status'),
-                fieldtype: 'Select',
-                options: 'Pending\nApproval Drawing\nSend for Approval\nDesign\nModelling\nProduction Drawing\nSKU Generation\nBOM\nNesting\nCompleted\nCancelled',
-                default: ''
-            }, function(values) {
-                if (values.design_status) {
-                    listview.filter_area.add_filter('Design Request Item', 'design_status', '=', values.design_status);
-                }
-            });
-        });
-        
-        listview.page.add_inner_button(__('Filter by Approval'), function() {
-            frappe.prompt({
-                label: __('Approval Status'),
-                fieldtype: 'Select',
-                options: 'Pending\nApproved\nRejected\nOn Hold\nRevised',
-                default: ''
-            }, function(values) {
-                if (values.approval_status) {
-                    listview.filter_area.add_filter('Design Request Item', 'approval_status', '=', values.approval_status);
-                }
-            });
-        });
     }
 };
 
 // Global functions for dropdown updates
 window.update_design_status = function(docname, new_status) {
     frappe.call({
-        method: 'frappe.client.set_value',
+        method: 'design_integration.design_integration.doctype.design_request_item.design_request_item.update_design_status',
         args: {
-            doctype: 'Design Request Item',
-            name: docname,
-            fieldname: 'design_status',
-            value: new_status
+            docname: docname,
+            new_status: new_status
         },
         callback: function(r) {
             if (r.exc) {
-                frappe.msgprint(__('Error updating status'));
+                frappe.msgprint(__('Error updating status: ') + r.exc);
             } else {
-                frappe.show_alert(__('Status updated successfully'), 3);
-                // Refresh the list
+                frappe.msgprint({
+                    message: __('Status updated successfully'),
+                    indicator: 'green'
+                });
+                // Refresh the list view
                 cur_list.refresh();
             }
         }
@@ -551,19 +486,20 @@ window.update_design_status = function(docname, new_status) {
 
 window.update_approval_status = function(docname, new_status) {
     frappe.call({
-        method: 'frappe.client.set_value',
+        method: 'design_integration.design_integration.doctype.design_request_item.design_request_item.update_approval_status',
         args: {
-            doctype: 'Design Request Item',
-            name: docname,
-            fieldname: 'approval_status',
-            value: new_status
+            docname: docname,
+            new_status: new_status
         },
         callback: function(r) {
             if (r.exc) {
-                frappe.msgprint(__('Error updating approval status'));
+                frappe.msgprint(__('Error updating approval status: ') + r.exc);
             } else {
-                frappe.show_alert(__('Approval status updated successfully'), 3);
-                // Refresh the list
+                frappe.msgprint({
+                    message: __('Approval status updated successfully'),
+                    indicator: 'green'
+                });
+                // Refresh the list view
                 cur_list.refresh();
             }
         }

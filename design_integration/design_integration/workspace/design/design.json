@@ -1,163 +1,136 @@
 {
- "charts": [],
+ "charts": [
+  {
+   "chart_name": "Design Requests by Status",
+   "label": "Design Requests by Status"
+  },
+  {
+   "chart_name": "Design Items by Stage",
+   "label": "Design Items by Stage"
+  },
+  {
+   "chart_name": "Design Requests Timeline",
+   "label": "Design Requests Timeline"
+  }
+ ],
+ "content": "[{\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Design Integration\",\"col\":12}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Requests by Status\",\"col\":4}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Items by Stage\",\"col\":4}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Requests Timeline\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Dashboard\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Tasks\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Analytics\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Quick Links\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
  "creation": "2025-01-31 10:00:00.000000",
- "dashboard_name": "Design",
  "docstatus": 0,
- "doctype": "Dashboard",
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "branch",
  "idx": 0,
- "is_default": 0,
- "is_standard": 1,
+ "label": "Design",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Settings",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Design Settings",
+   "link_count": 0,
+   "link_to": "Design Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Quick Links",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Design Dashboard",
+   "link_count": 0,
+   "link_to": "/design-dashboard",
+   "link_type": "URL",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Design Request",
+   "link_count": 0,
+   "link_to": "Design Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Design Request Item",
+   "link_count": 0,
+   "link_to": "Design Request Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Design Stage Transition",
+   "link_count": 0,
+   "link_to": "Design Stage Transition",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Design Item Stage Transition",
+   "link_count": 0,
+   "link_to": "Design Item Stage Transition",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
  "modified": "2025-01-31 10:00:00.000000",
  "modified_by": "Administrator",
  "module": "Design Integration",
  "name": "Design",
  "owner": "Administrator",
- "refresh_interval": 300,
- "roles": [
-  {
-   "role": "System Manager"
-  },
-  {
-   "role": "Administrator"
-  }
- ],
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 20.0,
  "shortcuts": [
   {
-   "color": "#FF6B6B",
-   "doc_view": "List",
-   "label": "Design Requests",
-   "link_to": "Design Request",
-   "type": "DocType"
+   "label": "Design Dashboard",
+   "link_to": "Design Dashboard",
+   "type": "Dashboard"
   },
   {
-   "color": "#4ECDC4",
-   "doc_view": "Dashboard",
-   "label": "Design Items Dashboard",
-   "link_to": "Design Items Dashboard",
-   "type": "DocType"
-  },
-  {
-   "color": "#45B7D1",
+   "color": "Blue",
    "doc_view": "List",
-   "label": "All Design Items",
+   "label": "Design Tasks",
    "link_to": "Design Request Item",
    "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Design Analytics",
+   "link_to": "/design-dashboard",
+   "type": "URL"
   }
  ],
- "cards": [
-  {
-   "card_name": "Total Design Requests",
-   "chart": null,
-   "creation": "2025-01-31 10:00:00.000000",
-   "docstatus": 0,
-   "doctype": "Dashboard Card",
-   "idx": 0,
-   "modified": "2025-01-31 10:00:00.000000",
-   "modified_by": "Administrator",
-   "name": "Total Design Requests",
-   "owner": "Administrator",
-   "type": "Number",
-   "filters_json": "[]"
-  },
-  {
-   "card_name": "Pending Requests",
-   "chart": null,
-   "creation": "2025-01-31 10:00:00.000000",
-   "docstatus": 0,
-   "doctype": "Dashboard Card",
-   "idx": 0,
-   "modified": "2025-01-31 10:00:00.000000",
-   "modified_by": "Administrator",
-   "name": "Pending Requests",
-   "owner": "Administrator",
-   "type": "Number",
-   "filters_json": "[{\"field\":\"status\",\"operator\":\"in\",\"value\":\"['Approval Drawing','Send for Approval','Design','Production Drawing','BOM','Nesting']\"}]"
-  },
-  {
-   "card_name": "Completed Requests",
-   "chart": null,
-   "creation": "2025-01-31 10:00:00.000000",
-   "docstatus": 0,
-   "doctype": "Dashboard Card",
-   "idx": 0,
-   "modified": "2025-01-31 10:00:00.000000",
-   "modified_by": "Administrator",
-   "name": "Completed Requests",
-   "owner": "Administrator",
-   "type": "Number",
-   "filters_json": "[{\"field\":\"status\",\"operator\":\"=\",\"value\":\"Completed\"}]"
-  },
-  {
-   "card_name": "My Requests",
-   "chart": null,
-   "creation": "2025-01-31 10:00:00.000000",
-   "docstatus": 0,
-   "doctype": "Dashboard Card",
-   "idx": 0,
-   "modified": "2025-01-31 10:00:00.000000",
-   "modified_by": "Administrator",
-   "name": "My Requests",
-   "owner": "Administrator",
-   "type": "Number",
-   "filters_json": "[{\"field\":\"assigned_to\",\"operator\":\"=\",\"value\":\"me\"}]"
-  }
- ],
- "number_cards": [
-  {
-   "card_name": "Total Design Requests",
-   "chart": null,
-   "creation": "2025-01-31 10:00:00.000000",
-   "docstatus": 0,
-   "doctype": "Dashboard Card",
-   "idx": 0,
-   "modified": "2025-01-31 10:00:00.000000",
-   "modified_by": "Administrator",
-   "name": "Total Design Requests",
-   "owner": "Administrator",
-   "type": "Number",
-   "filters_json": "[]"
-  },
-  {
-   "card_name": "Pending Requests",
-   "chart": null,
-   "creation": "2025-01-31 10:00:00.000000",
-   "docstatus": 0,
-   "doctype": "Dashboard Card",
-   "idx": 0,
-   "modified": "2025-01-31 10:00:00.000000",
-   "modified_by": "Administrator",
-   "name": "Pending Requests",
-   "owner": "Administrator",
-   "type": "Number",
-   "filters_json": "[{\"field\":\"status\",\"operator\":\"in\",\"value\":\"['Approval Drawing','Send for Approval','Design','Production Drawing','BOM','Nesting']\"}]"
-  },
-  {
-   "card_name": "Completed Requests",
-   "chart": null,
-   "creation": "2025-01-31 10:00:00.000000",
-   "docstatus": 0,
-   "doctype": "Dashboard Card",
-   "idx": 0,
-   "modified": "2025-01-31 10:00:00.000000",
-   "modified_by": "Administrator",
-   "name": "Completed Requests",
-   "owner": "Administrator",
-   "type": "Number",
-   "filters_json": "[{\"field\":\"status\",\"operator\":\"=\",\"value\":\"Completed\"}]"
-  },
-  {
-   "card_name": "My Requests",
-   "chart": null,
-   "creation": "2025-01-31 10:00:00.000000",
-   "docstatus": 0,
-   "doctype": "Dashboard Card",
-   "idx": 0,
-   "modified": "2025-01-31 10:00:00.000000",
-   "modified_by": "Administrator",
-   "name": "My Requests",
-   "owner": "Administrator",
-   "type": "Number",
-   "filters_json": "[{\"field\":\"field\":\"assigned_to\",\"operator\":\"=\",\"value\":\"me\"}]"
-  }
- ]
+ "title": "Design"
 } 

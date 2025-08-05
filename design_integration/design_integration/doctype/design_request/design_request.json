@@ -90,7 +90,8 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Design Request Item"
+   "options": "Design Request Item Child",
+   "reqd": 1
   },
   {
    "fieldname": "design_manager",
@@ -126,6 +127,14 @@
    "label": "Stage Transition Log",
    "options": "Design Stage Transition",
    "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "default": "Syena Kitchenconceptz Manufacturing Private Limited",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,

@@ -2,33 +2,10 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 from frappe.utils import now_datetime
-import frappe.model.naming
 
-class DesignRequestItem(Document):
-    def autoname(self):
-        """Generate name for Design Request Item"""
-        if not self.name:
-            # Get the next number in the series
-            last_item = frappe.get_all(
-                "Design Request Item",
-                fields=["name"],
-                order_by="name desc",
-                limit=1
-            )
-            
-            if last_item:
-                try:
-                    last_number = int(last_item[0].name.split('-')[-1])
-                    next_number = last_number + 1
-                except:
-                    next_number = 1
-            else:
-                next_number = 1
-            
-            self.name = f"DESIGN-ITEM-{next_number:04d}"
-    
+class DesignRequestItemChild(Document):
     def validate(self):
-        """Validate Design Request Item"""
+        """Validate Design Request Item Child"""
         self.validate_item()
         self.update_current_stage()
     
@@ -102,28 +79,4 @@ class DesignRequestItem(Document):
         
         # Handle nesting completion
         if self.design_status == "Nesting":
-            self.nesting_completed = 1
-
-@frappe.whitelist()
-def update_design_status(docname, new_status):
-    """Update design status from list view"""
-    try:
-        doc = frappe.get_doc("Design Request Item", docname)
-        doc.design_status = new_status
-        doc.save()
-        return {"success": True}
-    except Exception as e:
-        frappe.log_error(f"Error updating design status: {str(e)}")
-        return {"success": False, "error": str(e)}
-
-@frappe.whitelist()
-def update_approval_status(docname, new_status):
-    """Update approval status from list view"""
-    try:
-        doc = frappe.get_doc("Design Request Item", docname)
-        doc.approval_status = new_status
-        doc.save()
-        return {"success": True}
-    except Exception as e:
-        frappe.log_error(f"Error updating approval status: {str(e)}")
-        return {"success": False, "error": str(e)} 
+            self.nesting_completed = 1 

@@ -1,0 +1,130 @@
+{
+ "cards": [
+  {
+   "card_name": "Design Total Requests",
+   "chart": null,
+   "creation": "2025-01-31 10:00:00.000000",
+   "docstatus": 0,
+   "doctype": "Dashboard Card",
+   "idx": 0,
+   "modified": "2025-01-31 10:00:00.000000",
+   "modified_by": "Administrator",
+   "name": "Design Total Requests",
+   "owner": "Administrator",
+   "type": "Number",
+   "filters_json": "[]"
+  },
+  {
+   "card_name": "Design Pending Requests",
+   "chart": null,
+   "creation": "2025-01-31 10:00:00.000000",
+   "docstatus": 0,
+   "doctype": "Dashboard Card",
+   "idx": 0,
+   "modified": "2025-01-31 10:00:00.000000",
+   "modified_by": "Administrator",
+   "name": "Design Pending Requests",
+   "owner": "Administrator",
+   "type": "Number",
+   "filters_json": "[{\"field\":\"status\",\"operator\":\"=\",\"value\":\"Open\"}]"
+  },
+  {
+   "card_name": "Design Completed Requests",
+   "chart": null,
+   "creation": "2025-01-31 10:00:00.000000",
+   "docstatus": 0,
+   "doctype": "Dashboard Card",
+   "idx": 0,
+   "modified": "2025-01-31 10:00:00.000000",
+   "modified_by": "Administrator",
+   "name": "Design Completed Requests",
+   "owner": "Administrator",
+   "type": "Number",
+   "filters_json": "[{\"field\":\"status\",\"operator\":\"=\",\"value\":\"Closed\"}]"
+  },
+  {
+   "card_name": "Design My Requests",
+   "chart": null,
+   "creation": "2025-01-31 10:00:00.000000",
+   "docstatus": 0,
+   "doctype": "Dashboard Card",
+   "idx": 0,
+   "modified": "2025-01-31 10:00:00.000000",
+   "modified_by": "Administrator",
+   "name": "Design My Requests",
+   "owner": "Administrator",
+   "type": "Number",
+   "filters_json": "[{\"field\":\"assigned_to\",\"operator\":\"=\",\"value\":\"me\"}]"
+  }
+ ],
+ "charts": [
+  {
+   "chart_name": "Design Requests by Status",
+   "label": "Design Requests by Status"
+  },
+  {
+   "chart_name": "Design Items by Stage",
+   "label": "Design Items by Stage"
+  },
+  {
+   "chart_name": "Design Requests Timeline",
+   "label": "Design Requests Timeline"
+  }
+ ],
+ "creation": "2025-01-31 10:00:00.000000",
+ "dashboard_name": "Design Dashboard",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2025-01-31 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Design Integration",
+ "name": "Design Dashboard",
+ "owner": "Administrator",
+ "refresh_interval": 300,
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Administrator"
+  },
+  {
+   "role": "Design Manager"
+  },
+  {
+   "role": "Design User"
+  },
+  {
+   "role": "Project Manager"
+  },
+  {
+   "role": "Project User"
+  }
+ ],
+ "shortcuts": [
+  {
+   "color": "#FF6B6B",
+   "doc_view": "List",
+   "label": "Design Requests",
+   "link_to": "Design Request",
+   "type": "DocType"
+  },
+  {
+   "color": "#4ECDC4",
+   "doc_view": "List",
+   "label": "Design Tasks",
+   "link_to": "Design Request Item",
+   "type": "DocType"
+  },
+  {
+   "color": "#45B7D1",
+   "doc_view": "Dashboard",
+   "label": "Design Analytics",
+   "link_to": "Design Dashboard",
+   "type": "Dashboard"
+  }
+ ]
+} 

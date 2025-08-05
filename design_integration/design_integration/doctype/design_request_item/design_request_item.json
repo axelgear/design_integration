@@ -4,76 +4,125 @@
  "creation": "2025-01-31 10:00:00.000000",
  "doctype": "DocType",
  "engine": "InnoDB",
- "is_child_table": 1,
- "field_order": "item_code,item_name,description,qty,uom,design_status,current_stage,approval_status,approval_date,approval_remarks,assigned_to,start_date,completion_date,new_item_code,new_item_name,sku_generated,item_created,bom_name,bom_created,nesting_completed,stage_transition_log",
+ "field_order": [
+  "item_details_section",
+  "item_code",
+  "item_name",
+  "qty",
+  "uom",
+  "column_break_1",
+  "description",
+  "company",
+  "status_section",
+  "design_status",
+  "approval_status",
+  "column_break_2",
+  "current_stage",
+  "approval_date",
+  "approval_remarks",
+  "assignment_section",
+  "assigned_to",
+  "start_date",
+  "column_break_3",
+  "completion_date",
+  "production_section",
+  "new_item_code",
+  "new_item_name",
+  "sku_generated",
+  "item_created",
+  "column_break_4",
+  "bom_name",
+  "bom_created",
+  "nesting_completed",
+  "log_section",
+  "stage_transition_log",
+  "parent",
+  "parentfield",
+  "parenttype"
+ ],
  "fields": [
+  {
+   "fieldname": "item_details_section",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
   {
    "fieldname": "item_code",
    "fieldtype": "Link",
    "label": "Item Code",
    "options": "Item",
    "reqd": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "parent",
-   "fieldtype": "Data",
-   "label": "Parent",
-   "hidden": 1
-  },
-  {
-   "fieldname": "parentfield",
-   "fieldtype": "Data",
-   "label": "Parent Field",
-   "hidden": 1
-  },
-  {
-   "fieldname": "parenttype",
-   "fieldtype": "Data",
-   "label": "Parent Type",
-   "hidden": 1
+   "read_only": 1,
+   "in_list_view": 1
   },
   {
    "fieldname": "item_name",
    "fieldtype": "Data",
    "label": "Item Name",
-   "read_only": 1
-  },
-  {
-   "fieldname": "description",
-   "fieldtype": "Text Editor",
-   "label": "Description"
+   "read_only": 1,
+   "in_list_view": 1
   },
   {
    "fieldname": "qty",
    "fieldtype": "Float",
-   "label": "Quantity"
+   "label": "Quantity",
+   "in_list_view": 1
   },
   {
    "fieldname": "uom",
    "fieldtype": "Link",
    "label": "UOM",
-   "options": "UOM"
+   "options": "UOM",
+   "in_list_view": 1
   },
   {
-   "default": "Pending",
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description",
+   "in_list_view": 0
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "default": "Syena Kitchenconceptz Manufacturing Private Limited",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Status & Approval"
+  },
+  {
    "fieldname": "design_status",
    "fieldtype": "Select",
    "label": "Design Status",
-   "options": "Pending\nApproval Drawing\nSend for Approval\nDesign\nModelling\nProduction Drawing\nSKU Generation\nBOM\nNesting\nCompleted\nCancelled"
+   "default": "Pending",
+   "options": "Pending\nApproval Drawing\nSend for Approval\nDesign\nModelling\nProduction Drawing\nSKU Generation\nBOM\nNesting\nCompleted\nCancelled",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "label": "Approval Status",
+   "default": "Pending",
+   "options": "Pending\nApproved\nRejected\nOn Hold\nRevised",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "current_stage",
    "fieldtype": "Data",
    "label": "Current Stage",
    "read_only": 1
-  },
-  {
-   "fieldname": "approval_status",
-   "fieldtype": "Select",
-   "label": "Approval Status",
-   "options": "Pending\nApproved\nRejected\nOn Hold\nRevised",
-   "default": "Pending"
   },
   {
    "fieldname": "approval_date",
@@ -85,6 +134,11 @@
    "fieldname": "approval_remarks",
    "fieldtype": "Text Editor",
    "label": "Approval Remarks"
+  },
+  {
+   "fieldname": "assignment_section",
+   "fieldtype": "Section Break",
+   "label": "Assignment"
   },
   {
    "fieldname": "assigned_to",
@@ -99,10 +153,19 @@
    "read_only": 1
   },
   {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "completion_date",
    "fieldtype": "Datetime",
    "label": "Completion Date",
    "read_only": 1
+  },
+  {
+   "fieldname": "production_section",
+   "fieldtype": "Section Break",
+   "label": "Production Details"
   },
   {
    "fieldname": "new_item_code",
@@ -131,6 +194,10 @@
    "depends_on": "eval:doc.new_item_code"
   },
   {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "bom_name",
    "fieldtype": "Link",
    "label": "BOM Name",
@@ -152,20 +219,38 @@
    "depends_on": "eval:doc.design_status == 'Nesting'"
   },
   {
+   "fieldname": "log_section",
+   "fieldtype": "Section Break",
+   "label": "Stage Transition Log"
+  },
+  {
    "fieldname": "stage_transition_log",
    "fieldtype": "Table",
    "label": "Stage Transition Log",
    "options": "Design Item Stage Transition",
    "read_only": 1
+  },
+  {
+   "fieldname": "parent",
+   "fieldtype": "Data",
+   "hidden": 1
+  },
+  {
+   "fieldname": "parentfield",
+   "fieldtype": "Data",
+   "hidden": 1
+  },
+  {
+   "fieldname": "parenttype",
+   "fieldtype": "Data",
+   "hidden": 1
   }
  ],
- "index_web_pages_for_search": 1,
  "links": [],
  "modified": "2025-01-31 10:00:00.000000",
  "modified_by": "Administrator",
  "module": "Design Integration",
  "name": "Design Request Item",
- "naming_rule": "autoname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -231,5 +316,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
