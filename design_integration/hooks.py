@@ -2,10 +2,6 @@
 # Copyright (c) 2025, AxelGear and contributors
 # For license information, please see license.txt
 
-from __future__ import unicode_literals
-import frappe
-from frappe import _
-
 # App configuration
 app_name = "design_integration"
 app_title = "Design Integration"
@@ -13,6 +9,10 @@ app_publisher = "Axelgear"
 app_description = "Design Integration"
 app_email = "rejithr1995@gmail.com"
 app_license = "mit"
+
+from __future__ import unicode_literals
+import frappe
+from frappe import _
 
 # Include JS files
 app_include_js = [
