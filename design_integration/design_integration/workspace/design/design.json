@@ -13,10 +13,10 @@
    "label": "Design Requests Timeline"
   }
  ],
- "content": "[{\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Design Integration\",\"col\":12}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Requests by Status\",\"col\":4}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Items by Stage\",\"col\":4}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Requests Timeline\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Dashboard\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Tasks\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Analytics\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Quick Links\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
+ "content": "[{\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Design Integration\",\"col\":12}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Requests by Status\",\"col\":4}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Items by Stage\",\"col\":4}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Design Requests Timeline\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Tasks\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Requests\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Design Items Dashboard\",\"col\":4}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Quick Links\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
  "creation": "2025-01-31 10:00:00.000000",
  "docstatus": 0,
- "doctype": "Workspace",
+ "doctype": "Workspace", 
  "for_user": "",
  "hide_custom": 0,
  "icon": "branch",
@@ -98,6 +98,16 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Design Items Dashboard",
+   "link_count": 0,
+   "link_to": "Design Items Dashboard",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
  "modified": "2025-01-31 10:00:00.000000",
@@ -113,11 +123,6 @@
  "sequence_id": 20.0,
  "shortcuts": [
   {
-   "label": "Design Dashboard",
-   "link_to": "Design Dashboard",
-   "type": "Dashboard"
-  },
-  {
    "color": "Blue",
    "doc_view": "List",
    "label": "Design Tasks",
@@ -127,9 +132,16 @@
   {
    "color": "Green",
    "doc_view": "List",
-   "label": "Design Analytics",
-   "link_to": "/design-dashboard",
-   "type": "URL"
+   "label": "Design Items Dashboard",
+   "link_to": "Design Items Dashboard",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Design Requests",
+   "link_to": "Design Request",
+   "type": "DocType"
   }
  ],
  "title": "Design"
