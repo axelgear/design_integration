@@ -293,7 +293,6 @@ import json
 from frappe.utils import flt
 @frappe.whitelist()
 def create_design_request_from_sales_order(sales_order, selected_items=None):
-    frappe.throw(str(selected_items))
     """Create a design request from sales order"""
     try:
         sales_order_doc = frappe.get_doc("Sales Order", sales_order)
