@@ -172,3 +172,45 @@ def update_approval_status(docname, new_status):
     except Exception as e:
         frappe.log_error(f"Error updating approval status: {str(e)}")
         return {"success": False, "error": str(e)} 
+
+@frappe.whitelist()
+def get_version_meta_data():
+    return frappe.get_meta("Design Version")
+
+
+@frappe.whitelist()
+def get_version_list(design_request_item):
+    return frappe.get_all("Design Version", filters={"design_request_item" : design_request_item}, fields=[
+        "name", "posting_date", "version_tag", "new_version_file", "description"
+    ])
+
+
+
+@frappe.whitelist()
+def delete_version(version_name, design_request_item):
+    """Delete a design version"""
+    try:
+        # Check permissions
+        if not frappe.has_permission("Design Version", "delete"):
+            frappe.throw(_("You don't have permission to delete versions"))
+        
+        # Get the version
+        version = frappe.get_doc("Design Version", version_name)
+        
+        # Store reference before deleting
+        docname = version.name
+        
+        # Delete the document
+        frappe.delete_doc("Design Version", version_name, ignore_permissions=False)
+        
+        frappe.db.commit()
+        
+        return {
+            "success": True,
+            "message": _("Version deleted successfully"),
+            "deleted_docname": docname
+        }
+        
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "Design Version Deletion Error")
+        frappe.throw(_("Error deleting version: {0}").format(str(e)))

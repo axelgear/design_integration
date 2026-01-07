@@ -1,8 +1,6 @@
 // Design Request Item Form Customization
 frappe.ui.form.on('Design Request Item', {
     refresh: function(frm) {
-        frm.disable_submit();
-        // Create a beautiful 2-column layout
         createTwoColumnLayout(frm);
         
         // Add custom buttons

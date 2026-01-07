@@ -21,7 +21,9 @@ app_include_js = [
 ]
 
 # Include CSS files
-app_include_css = []
+app_include_css = [
+    "assets/design_integration/css/design.css"
+]
 
 ## after migrate
 after_migrate = "design_integration.design_integration.custom_field.create_custom_fields_on_migrate"
