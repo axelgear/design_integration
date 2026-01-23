@@ -20,6 +20,10 @@ app_include_js = [
 	"/assets/design_integration/js/design_request_item_form.js"
 ]
 
+doctype_js = {
+        "Project" : "public/js/project.js",
+    }
+
 # Include CSS files
 app_include_css = []
 
