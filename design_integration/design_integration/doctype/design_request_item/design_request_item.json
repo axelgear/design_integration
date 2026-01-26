@@ -21,7 +21,6 @@
   "approval_date",
   "approval_remarks",
   "assignment_section",
-  "assigned_to",
   "start_date",
   "column_break_3",
   "completion_date",
@@ -142,12 +141,6 @@
    "fieldname": "assignment_section",
    "fieldtype": "Section Break",
    "label": "Assignment"
-  },
-  {
-   "fieldname": "assigned_to",
-   "fieldtype": "Link",
-   "label": "Assigned To",
-   "options": "User"
   },
   {
    "fieldname": "start_date",
@@ -284,8 +277,8 @@
    "link_fieldname": "design_request_item"
   }
  ],
- "modified": "2026-01-21 10:02:16.253139",
- "modified_by": "Administrator",
+ "modified": "2026-01-26 20:04:08.320996",
+ "modified_by": "pavithra@fosserp.com",
  "module": "Design Integration",
  "name": "Design Request Item",
  "owner": "Administrator",
