@@ -55,8 +55,20 @@ frappe.ui.form.on("Design Request Item", {
                                 });
                             }
                         });
-
-                        d.show();
+                        let version_tag = `V${frm.doc.revision_count}`
+                        frappe.call({
+                            method : "design_integration.design_integration.doctype.design_request_item.design_request_item.get_next_version_tag",
+                            args : {
+                                design_request_item : frm.doc.name
+                            },
+                            callback:(r)=>{
+                                if (!r.message) return;
+                                d.set_value("version_tag", r.message)
+                                d.set_value("description" , frm.doc.revision_reason || "")
+                                d.show();
+                            }
+                        })
+                        
                     }
                 })
             });
