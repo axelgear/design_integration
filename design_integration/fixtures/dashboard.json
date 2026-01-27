@@ -1,0 +1,36 @@
+[
+ {
+  "cards": [
+   {
+    "card": "Design Request Created –Last Month",
+    "parent": "Design Request Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Design Request Items Created – This Month",
+    "parent": "Design Request Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Design Request Task By Status",
+    "parent": "Design Request Dashboard",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "Design Request Dashboard",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 0,
+  "modified": "2026-01-25 18:05:21.110224",
+  "module": null,
+  "name": "Design Request Dashboard"
+ }
+]
