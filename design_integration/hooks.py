@@ -51,7 +51,38 @@ fixtures = [
 	{
 		"doctype": "Custom Field",
 		"filters": [["module", "=", "Design Integration"]]
-	}
+	},
+    {
+        "dt": "Print Format",
+        "filters": [
+            ["name", "=", "Design Request Item"]
+        ]
+    },
+	{
+        "doctype": "Dashboard",
+        "filters": {
+            "name": ["in", ["Design Request Dashboard"]]
+        }
+    },
+	{
+        "doctype": "Workspace",
+        "filters": {
+            "name": ["in", ["Design"]]
+        }
+    },
+	{
+        "doctype": "Dashboard Chart",
+        "filters": {
+            "name": ["in", ["Design Request Task By Status"]]
+        }
+    },
+		{
+        "doctype": "Number Card",
+        "filters": {
+            "name": ["in", ["Design Request Created –Last Month","Design Request Items Created – This Month"]]
+        }
+    }
+
 ]
 
 # Permissions
