@@ -57,19 +57,15 @@ frappe.ui.form.on("Design Request Item", {
                         });
                         let version_tag = `V${frm.doc.revision_count}`
                         frappe.call({
-                            method : "design_integration.design_integration.doctype.design_request_item.design_request_item.check_version_tab",
+                            method : "design_integration.design_integration.doctype.design_request_item.design_request_item.get_next_version_tag",
                             args : {
-                                version_tag : version_tag,
-                                name : frm.doc.name
+                                design_request_item : frm.doc.name
                             },
                             callback:(r)=>{
-                                if (r.message){
-                                    frappe.throw(`Version Tag ${version_tag} is already updated`)
-                                }else{
-                                    d.set_value("version_tag", version_tag)
-                                    d.set_value("description" , frm.doc.revision_reason)
-                                    d.show();
-                                }
+                                if (!r.message) return;
+                                d.set_value("version_tag", r.message)
+                                d.set_value("description" , frm.doc.revision_reason || "")
+                                d.show();
                             }
                         })
                         

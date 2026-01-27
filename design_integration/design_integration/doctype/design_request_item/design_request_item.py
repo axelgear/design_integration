@@ -239,3 +239,30 @@ def delete_version(version_name, design_request_item):
 @frappe.whitelist()
 def check_version_tab(version_tag, name):
     return frappe.db.exists("Design Version", {"version_tag" : version_tag, "design_request_item" : name})
+
+@frappe.whitelist()
+def get_next_version_tag(design_request_item):
+    doc = frappe.get_doc("Design Request Item", design_request_item)
+
+    base_version = f"V{doc.revision_count}"
+
+    versions = frappe.get_all(
+        "Design Version",
+        filters={"design_request_item": design_request_item},
+        pluck="version_tag"
+    )
+
+    # sub version of base version
+    suffixes = []
+    for version in versions:
+        if version == base_version:
+            suffixes.append(0)
+        elif version.startswith(f"{base_version}-"):
+            try:
+                suffixes.append(int(version.split("-")[-1]))
+            except ValueError:
+                pass
+    if not suffixes:
+        return base_version
+    else:
+        return f"{base_version}-{max(suffixes) + 1}"
