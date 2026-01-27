@@ -235,3 +235,7 @@ def delete_version(version_name, design_request_item):
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Design Version Deletion Error")
         frappe.throw(_("Error deleting version: {0}").format(str(e)))
+
+@frappe.whitelist()
+def check_version_tab(version_tag, name):
+    return frappe.db.exists("Design Version", {"version_tag" : version_tag, "design_request_item" : name})

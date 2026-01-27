@@ -55,8 +55,24 @@ frappe.ui.form.on("Design Request Item", {
                                 });
                             }
                         });
-
-                        d.show();
+                        let version_tag = `V${frm.doc.revision_count}`
+                        frappe.call({
+                            method : "design_integration.design_integration.doctype.design_request_item.design_request_item.check_version_tab",
+                            args : {
+                                version_tag : version_tag,
+                                name : frm.doc.name
+                            },
+                            callback:(r)=>{
+                                if (r.message){
+                                    frappe.throw(`Version Tag ${version_tag} is already updated`)
+                                }else{
+                                    d.set_value("version_tag", version_tag)
+                                    d.set_value("description" , frm.doc.revision_reason)
+                                    d.show();
+                                }
+                            }
+                        })
+                        
                     }
                 })
             });
