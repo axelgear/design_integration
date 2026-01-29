@@ -7,6 +7,7 @@ frappe.ui.form.on("Design Request Item", {
 
         // Enforce allowed design_status options based on approval_status
         enforceDesignStatusOptions(frm);
+        toggle_status_fields(frm);
 
         if (!frm.doc.__islocal) {
 
@@ -23,7 +24,7 @@ frappe.ui.form.on("Design Request Item", {
                             .map(df => {
                                 return {
                                     ...df,
-                                    read_only: 0
+                                    read_only: df.fieldname === "version_tag" ? 1 : 0
                                 }
                             });
 
@@ -49,7 +50,19 @@ frappe.ui.form.on("Design Request Item", {
                                         if (!r.exc) {
                                             frappe.msgprint("Design Version Created");
                                             d.hide();
-                                            frm.refresh()
+                                            frappe.call({
+                                                method: "frappe.client.set_value",
+                                                args: {
+                                                    doctype: "Design Request Item",
+                                                    name: frm.doc.name,
+                                                    fieldname:  "revision_reason",
+                                                    value: ""
+                                                },
+                                                callback: () => {
+                                                    frm.reload_doc()
+                                                }
+                                            })
+                                            // frm.refresh()
                                         }
                                     }
                                 });
@@ -87,6 +100,7 @@ frappe.ui.form.on("Design Request Item", {
     design_status: function(frm) {
         // Update current stage when design status changes
         frm.set_value("current_stage", frm.doc.design_status);
+        toggle_status_fields(frm);
         // Auto-save when design status changes
         if (frm.doc.design_status) {
             frm.save(null, function() {
@@ -216,6 +230,13 @@ frappe.ui.form.on("Design Request Item", {
         }
     }
 });
+
+function toggle_status_fields(frm) {
+    const is_completed = frm.doc.design_status === "Completed"
+
+    frm.set_df_property("design_status","read_only", is_completed)
+    frm.set_df_property("approval_status", "read_only", is_completed)
+}
 
 
 function render_all_versions(frm){

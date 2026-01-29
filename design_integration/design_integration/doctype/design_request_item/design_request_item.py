@@ -34,6 +34,7 @@ class DesignRequestItem(Document):
         self.validate_item()
         self.update_current_stage()
         self.create_work_order()
+        self.validate_revision_reason()
     
     def on_update(self):
         """Handle updates"""
@@ -167,6 +168,12 @@ class DesignRequestItem(Document):
             if self.design_request:
                 wo_doc.sales_order = frappe.db.get_value("Design Request", self.design_request, "sales_order")
             wo_doc.save(ignore_permissions=True)
+
+    def validate_revision_reason(self):
+        if self.revision_requested and not self.revision_reason:
+            frappe.throw(
+                "Revision Reason is mandatory when Revision Requested is checked."
+            )
             
 @frappe.whitelist()
 def update_design_status(docname, new_status):

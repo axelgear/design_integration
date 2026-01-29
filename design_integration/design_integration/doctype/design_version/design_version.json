@@ -22,7 +22,7 @@
    "fieldname": "version_tag",
    "fieldtype": "Data",
    "label": "Version Tag",
-   "unique": 1
+   "unique": 0
   },
   {
    "fieldname": "new_version_file",
