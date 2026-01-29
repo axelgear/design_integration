@@ -229,7 +229,9 @@
   {
    "fieldname": "revision_reason",
    "fieldtype": "Small Text",
-   "label": "Revision Reason"
+   "label": "Revision Reason",
+   "depends_on": "eval:doc.revision_requested",
+   "mandatory_depends_on": "eval:doc.revision_requested"
   },
   {
    "default": "0",
